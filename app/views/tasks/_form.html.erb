@@ -1,0 +1,18 @@
+<%= form_with model: @task, local: true, class: "needs-validation" do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label fw-bold" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "Enter task title", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :details, class: "form-label fw-bold" %>
+    <%= f.text_area :details, class: "form-control", rows: 4, placeholder: "Add some details..." %>
+  </div>
+
+  <div class="form-check mb-4">
+    <%= f.check_box :completed, class: "form-check-input", id: "task_completed" %>
+    <%= f.label :completed, "Mark as completed", class: "form-check-label", for: "task_completed" %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary px-4 py-2 fw-semibold" %>
+<% end %>

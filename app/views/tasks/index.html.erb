@@ -1,3 +1,35 @@
-<h1>My tasks</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">📝 My Tasks</h1>
 
+  <div class="text-center mb-4">
+    <%= link_to "➕ Add a new task", new_task_path, class: "btn btn-success" %>
+  </div>
 
+  <ul class="list-group">
+    <% @tasks.each do |task| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input me-2"
+            disabled
+            <%= "checked" if task.completed %>
+          >
+          <%= link_to task.title, task_path(task), class: "fw-bold text-decoration-none" %>
+        </div>
+
+        <div>
+          <%= link_to edit_task_path(task), class: "btn btn-sm btn-warning me-2" do %>
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          <% end %>
+
+          <%= link_to task_path(task),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-sm btn-danger" do %>
+            <i class="fa-solid fa-trash"></i> Delete
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

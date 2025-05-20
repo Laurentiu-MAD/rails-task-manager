@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title fw-bold mb-3">
+            📝 <%= @task.title %>
+          </h2>
+
+          <p class="card-text fs-5 text-muted mb-4">
+            <%= @task.details.present? ? @task.details : "No details provided." %>
+          </p>
+
+          <p>
+            <% if @task.completed %>
+              <span class="badge bg-success">✅ Completed</span>
+            <% else %>
+              <span class="badge bg-warning text-dark">⏳ In progress</span>
+            <% end %>
+          </p>
+        </div>
+
+        <div class="card-footer bg-white d-flex justify-content-between">
+          <%= link_to "← Back to all tasks", tasks_path, class: "btn btn-outline-secondary" %>
+
+          <div>
+            <%= link_to edit_task_path(@task), class: "btn btn-outline-primary me-2" do %>
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            <% end %>
+
+            <%= link_to task_path(@task),
+                        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                        class: "btn btn-outline-danger" do %>
+              <i class="fa-solid fa-trash"></i> Delete
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
